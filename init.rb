@@ -5,16 +5,17 @@ class Heroku::Command::Prompt < Heroku::Command::Base
 
   def index
 
-  stty_save = `stty -g`.chomp
+    stty_save = `stty -g`.chomp
 
-  cmd_prefix = ARGV.join(" ")
+    cmd_prefix = ARGV.join(" ")
 
-  while cmd = Readline.readline(prompt, true)
-    exit if /exit/ =~ cmd
-    if cmd != ""
-      full_cmd = "heroku #{cmd} #{cmd_prefix}"
-      puts " [executing #{full_cmd}]"
-      system(full_cmd)
+    while cmd = Readline.readline(prompt, true)
+      exit if /exit/ =~ cmd
+      if cmd != ""
+        full_cmd = "heroku #{cmd} #{cmd_prefix}"
+        puts " [executing #{full_cmd}]"
+        system(full_cmd)
+      end
     end
   end
 
