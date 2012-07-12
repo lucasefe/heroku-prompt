@@ -6,11 +6,15 @@ require 'readline'
 class Heroku::Command::Prompt < Heroku::Command::Base
 
   def index
-    display Heroku::Command::Help.groups.inspect
-
-    while cmd = Readline.readline(prompt, true)
+    while line = Readline.readline(prompt, true)
+      lines = line.split(" ").map(&:strip)
+      cmd = lines.shift
       exit if /exit/ =~ cmd
-      run_command cmd, opts if cmd != ""
+      begin
+        run_command cmd, lines + opts if cmd != ""
+      rescue Exception => e
+        display "[Error]"
+      end
     end
   end
 
