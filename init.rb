@@ -13,7 +13,6 @@ class Heroku::Command::Prompt < Heroku::Command::Base
       begin
         run_command cmd, lines + opts if cmd != ""
       rescue Exception => e
-        display "[Error]"
       end
     end
   end
