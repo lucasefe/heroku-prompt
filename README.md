@@ -3,7 +3,7 @@
 This plugins adds a command to the heroku cli, so you can run other command
 always with the same global options.
 
-This is really helpful when you have multiple applications on the same
+This is really helpful when you have multiple applications in the same
 project/folder. 
 
 
