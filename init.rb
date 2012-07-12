@@ -1,9 +1,13 @@
 require "fileutils"
 require 'readline'
 
+# opens heroku prompt
+
 class Heroku::Command::Prompt < Heroku::Command::Base
 
   def index
+    display Heroku::Command::Help.groups.inspect
+
     while cmd = Readline.readline(prompt, true)
       exit if /exit/ =~ cmd
       run_command cmd, opts if cmd != ""
@@ -21,9 +25,5 @@ class Heroku::Command::Prompt < Heroku::Command::Base
       ["--#{k}", v]
     end.flatten
   end
-end
-
-Heroku::Command::Help.group("Accounts") do |group|
-  group.command "prompt", "access the prompt"
 end
 
